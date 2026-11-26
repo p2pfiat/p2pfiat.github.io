@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#0b0f17" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <title>p2pFiat — Self-Custody USD on Arkade</title>
-    <script type="module" crossorigin src="./assets/index-D71MDske.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Bd25Eyd_.css">
+    <script type="module" crossorigin src="./assets/index-DPraJl8C.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B7l9Jl2y.css">
   </head>
   <body>
     <div id="app">
@@ -33,31 +33,39 @@
         <div class="balance-label">Total Balance (Self-Custody)</div>
         <div id="total-usd" class="balance-main">$0.00</div>
 
-        <div class="spending-box">
-          <div class="tier-label">⚡ Spending (Instant)</div>
-          <div class="spending-grid">
-            <div class="split-item">
-              <span id="pegged-label" class="muted">Stable USD</span>
-              <strong id="pegged-usd" class="accent-green">$0.00</strong>
-              <span id="pegged-sats" class="muted" style="font-size:0.7rem">≈ 0 sats</span>
-              <span id="accrued-interest-total" class="interest-sub">+$0.00000 yield</span>
-              <div class="mini-actions left">
-                <button id="stable-recv-toggle" class="arrow-pill">Receive</button>
-                <button id="stable-send-toggle" class="arrow-pill">Send</button>
-              </div>
+        <div class="tier-box tier-stable">
+          <div class="tier-info">
+            <div id="pegged-label" class="tier-label">🛡 Stable USD</div>
+            <span id="accrued-interest-total" class="interest-sub">+$0.00000 yield</span>
+          </div>
+          <div class="tier-right">
+            <strong id="pegged-usd" class="tier-amount accent-green">$0.00</strong>
+            <div id="pegged-sats" class="muted tier-sub">≈ 0 sats</div>
+            <div class="mini-actions">
+              <button id="stable-recv-toggle" class="arrow-pill">Receive</button>
+              <button id="stable-send-toggle" class="arrow-pill">Send</button>
             </div>
-            <div class="swap-arrows-h">
-              <button id="btn-to-fiat" class="arrow-pill" title="Lock BTC into Stable USD/EUR">← USD</button>
-              <button id="btn-to-sats" class="arrow-pill" title="Close position back to BTC sats">Sats →</button>
-            </div>
-            <div class="split-item" style="text-align:right">
-              <span class="muted">Spending BTC</span>
-              <strong id="avail-sats">0 sats</strong>
-              <span id="avail-fiat" class="muted" style="font-size:0.7rem">≈ $0.00</span>
-              <div class="mini-actions">
-                <button id="deposit-toggle" class="arrow-pill">Receive</button>
-                <button id="send-toggle" class="arrow-pill">Send</button>
-              </div>
+          </div>
+        </div>
+
+        <div id="stable-drawer-slot" class="drawer-slot"></div>
+
+        <div class="vault-bridge">
+          <button id="btn-to-fiat" class="arrow-pill vertical" title="Lock BTC into Stable USD/EUR">↑ To USD</button>
+          <button id="btn-to-sats" class="arrow-pill vertical" title="Close position back to BTC sats">↓ To Sats</button>
+        </div>
+
+        <div class="tier-box tier-spending">
+          <div class="tier-info">
+            <div class="tier-label">⚡ Spending BTC</div>
+            <span class="muted tier-sub">Instant · Arkade &amp; Lightning</span>
+          </div>
+          <div class="tier-right">
+            <strong id="avail-sats" class="tier-amount">0 sats</strong>
+            <div id="avail-fiat" class="muted tier-sub">≈ $0.00</div>
+            <div class="mini-actions">
+              <button id="deposit-toggle" class="arrow-pill">Receive</button>
+              <button id="send-toggle" class="arrow-pill">Send</button>
             </div>
           </div>
         </div>
@@ -71,14 +79,14 @@
 
         <div id="bridge-drawer-slot" class="drawer-slot"></div>
 
-        <div class="vault-box" style="margin-bottom:0">
-          <div>
-            <div class="tier-label" style="margin-bottom:2px">🏦 Bitcoin Vault (Onchain L1)</div>
-            <span id="vault-sub" class="muted" style="font-size:0.72rem">0 timelock · L1</span>
+        <div class="tier-box tier-vault">
+          <div class="tier-info">
+            <div class="tier-label">🏦 Bitcoin Vault (L1)</div>
+            <span id="vault-sub" class="muted tier-sub">0 timelock · Onchain</span>
           </div>
-          <div style="text-align:right">
-            <strong id="vault-sats">0 sats</strong>
-            <div id="vault-fiat" class="muted" style="font-size:0.72rem">≈ $0.00</div>
+          <div class="tier-right">
+            <strong id="vault-sats" class="tier-amount">0 sats</strong>
+            <div id="vault-fiat" class="muted tier-sub">≈ $0.00</div>
             <div class="mini-actions">
               <button id="vault-recv-toggle" class="arrow-pill">Receive</button>
               <button id="vault-send-toggle" class="arrow-pill">Send</button>
